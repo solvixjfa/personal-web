@@ -1,99 +1,136 @@
+<script setup>
+import { store } from '../store.js'
+</script>
+
 <template>
-  <section id="projects" class="py-20 border-t border-white/5 bg-[#080808]">
+  <section id="projects" class="py-20 border-t border-white/5 bg-[#050505]">
     <div class="max-w-5xl mx-auto px-6">
       <div class="text-center mb-16">
-        <h2 class="text-xs font-bold tracking-[0.3em] text-gray-400 uppercase mb-3">FEATURED WORK</h2>
-        <p class="text-2xl sm:text-3xl font-bold text-white">Selected Projects & Systems</p>
+        <h2 class="text-xs font-bold tracking-[0.3em] text-gray-400 uppercase mb-3">
+          {{ store.lang === 'en' ? 'Featured Work' : 'Portofolio Utama' }}
+        </h2>
+        <p class="text-2xl sm:text-3xl font-bold text-white">
+          {{ store.lang === 'en' ? 'Selected Projects & Systems' : 'Sistem & Proyek Pilihan' }}
+        </p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
         
-        <!-- Project 1: Niki CoC Bot (SaaS) -->
-        <div class="glossy-card p-8 rounded-2xl flex flex-col justify-between">
+        <!-- Project 1: Niki CoC -->
+        <div class="glossy-card p-8 rounded-2xl flex flex-col justify-between group hover:-translate-y-1 transition-transform duration-300">
           <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-[10px] font-mono tracking-widest text-gray-400 uppercase">COMMUNITY SAAS / DISCORD BOT</span>
-              <a href="https://coc.ixiera.id" target="_blank" class="text-xs font-bold text-white hover:underline flex items-center gap-1">
-                VISIT SITE &rarr;
-              </a>
-            </div>
+            <span class="text-[10px] font-mono tracking-widest text-gray-400 uppercase mb-4 block">COMMUNITY SAAS / DISCORD BOT</span>
             <h3 class="text-xl font-bold text-white mb-3">Niki CoC Bot</h3>
             <p class="text-sm text-gray-400 mb-6 font-light leading-relaxed">
-              Autonomous Discord bot for Clash of Clans management. Features real-time war updates, CWL analytics, donation tracking, and AI-powered clan health audits.
+              {{ store.lang === 'en' 
+                ? 'Autonomous Discord bot for Clash of Clans management. Features real-time war updates, CWL analytics, and AI-powered clan audits.' 
+                : 'Bot Discord otonom untuk manajemen Clash of Clans. Dilengkapi fitur update war real-time, analitik CWL, dan audit clan berbasis AI.' }}
             </p>
-            <div class="text-xs font-mono text-gray-400 mb-6 space-y-1">
-              <div>Python &bull; Discord API &bull; Gemini API &bull; Vue 3 &bull; Vite &bull; Vercel</div>
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-gray-400">Python</span>
+              <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-gray-400">Discord API</span>
+              <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-gray-400">Gemini</span>
+              <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-gray-400">Vue 3</span>
             </div>
+          </div>
+          <div class="mt-auto flex justify-center border-t border-white/10 pt-6">
+            <a href="https://coc.ixiera.id" target="_blank" class="px-8 py-2.5 border border-white/20 rounded-full text-[11px] font-bold uppercase tracking-widest text-white hover:bg-white hover:text-black transition-all shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+              {{ store.lang === 'en' ? 'Visit Site' : 'Kunjungi Web' }}
+            </a>
           </div>
         </div>
 
-        <!-- Project 2: Customer Churn Prediction (Live) -->
-        <div class="glossy-card p-8 rounded-2xl flex flex-col justify-between">
+        <!-- Project 2: Churn Prediction -->
+        <div class="glossy-card p-8 rounded-2xl flex flex-col justify-between group hover:-translate-y-1 transition-transform duration-300">
           <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-[10px] font-mono tracking-widest text-gray-400 uppercase">MACHINE LEARNING / ANALYTICS</span>
-              <a href="https://retain.ixiera.id" target="_blank" class="text-xs font-bold text-white hover:underline flex items-center gap-1">
-                VISIT SITE &rarr;
-              </a>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-3">Customer Churn Prediction System</h3>
-            <p class="text-sm text-gray-400 mb-6 font-light leading-relaxed">
-              Multi-model churn prediction system (XGBoost vs Neural Network) featuring auto-model selection, K-Means customer segmentation, LLM explanations, and production drift monitoring.
+            <span class="text-[10px] font-mono tracking-widest text-gray-400 uppercase mb-4 block">MACHINE LEARNING / ANALYTICS</span>
+            <h3 class="text-xl font-bold text-white mb-3">Customer Churn Prediction</h3>
+            <p class="text-sm text-gray-400 mb-4 font-light leading-relaxed">
+              {{ store.lang === 'en' 
+                ? 'Multi-model prediction system (XGBoost vs NN) featuring auto-model selection and production drift monitoring.' 
+                : 'Sistem prediksi multi-model (XGBoost vs NN) dengan seleksi model otomatis dan pemantauan drift di production.' }}
             </p>
-            <div class="text-xs font-mono text-gray-400 mb-4 space-y-1">
-              <div>Metrics: F1 0.63 | AUC 0.84</div>
-              <div>XGBoost &bull; TensorFlow &bull; MLflow &bull; FastAPI &bull; Docker &bull; Railway</div>
+            
+            <!-- CSS Metrics Chart -->
+            <div class="mb-6 space-y-3 bg-white/5 p-4 rounded-xl border border-white/5">
+              <div>
+                <div class="flex justify-between text-[10px] text-gray-300 mb-1 font-mono"><span>AUC SCORE</span><span>0.84</span></div>
+                <div class="w-full bg-black/50 rounded-full h-1.5"><div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-1.5 rounded-full" style="width: 84%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-[10px] text-gray-300 mb-1 font-mono"><span>F1 SCORE</span><span>0.63</span></div>
+                <div class="w-full bg-black/50 rounded-full h-1.5"><div class="bg-gradient-to-r from-purple-500 to-pink-500 h-1.5 rounded-full" style="width: 63%"></div></div>
+              </div>
             </div>
+
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-gray-400">XGBoost</span>
+              <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-gray-400">FastAPI</span>
+              <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-gray-400">Docker</span>
+            </div>
+          </div>
+          <div class="mt-auto flex justify-center border-t border-white/10 pt-6">
+            <a href="https://retain.ixiera.id" target="_blank" class="px-8 py-2.5 border border-white/20 rounded-full text-[11px] font-bold uppercase tracking-widest text-white hover:bg-white hover:text-black transition-all shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+              {{ store.lang === 'en' ? 'Visit Site' : 'Kunjungi Web' }}
+            </a>
           </div>
         </div>
 
-        <!-- Project 3: Metal Casting Defect Inspection -->
-        <div class="glossy-card p-8 rounded-2xl flex flex-col justify-between">
+        <!-- Project 3: Metal Casting -->
+        <div class="glossy-card p-8 rounded-2xl flex flex-col justify-between group hover:-translate-y-1 transition-transform duration-300">
           <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-[10px] font-mono tracking-widest text-gray-400 uppercase">COMPUTER VISION / QUALITY CONTROL</span>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-3">Automated Metal Defect Inspection</h3>
-            <p class="text-sm text-gray-400 mb-6 font-light leading-relaxed">
-              Hybrid CNN (MobileNetV2) + OpenCV + Random Forest system to detect and classify defect severity on metallic pump impellers in real-time.
+            <span class="text-[10px] font-mono tracking-widest text-gray-400 uppercase mb-4 block">COMPUTER VISION / QUALITY CONTROL</span>
+            <h3 class="text-xl font-bold text-white mb-3">Metal Defect Inspection</h3>
+            <p class="text-sm text-gray-400 mb-4 font-light leading-relaxed">
+              {{ store.lang === 'en' 
+                ? 'Hybrid CNN (MobileNetV2) + OpenCV system to detect and classify defect severity on metallic pump impellers.' 
+                : 'Sistem Hybrid CNN (MobileNetV2) + OpenCV untuk mendeteksi tingkat keparahan cacat pada impeller pompa logam.' }}
             </p>
-            <div class="text-xs font-mono text-gray-400 mb-4 space-y-1">
-              <div>Metrics: Accuracy 98.2% | Precision 0.98 | Recall 0.98</div>
-              <div>TensorFlow &bull; OpenCV &bull; scikit-learn &bull; Gradio &bull; Python</div>
+
+            <!-- CSS Metrics Chart -->
+            <div class="mb-6 space-y-3 bg-white/5 p-4 rounded-xl border border-white/5">
+              <div>
+                <div class="flex justify-between text-[10px] text-gray-300 mb-1 font-mono"><span>ACCURACY</span><span>98.2%</span></div>
+                <div class="w-full bg-black/50 rounded-full h-1.5"><div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-1.5 rounded-full" style="width: 98.2%"></div></div>
+              </div>
+              <div class="flex gap-4">
+                <div class="w-1/2">
+                  <div class="flex justify-between text-[10px] text-gray-300 mb-1 font-mono"><span>PRECISION</span><span>0.98</span></div>
+                  <div class="w-full bg-black/50 rounded-full h-1.5"><div class="bg-blue-500 h-1.5 rounded-full" style="width: 98%"></div></div>
+                </div>
+                <div class="w-1/2">
+                  <div class="flex justify-between text-[10px] text-gray-300 mb-1 font-mono"><span>RECALL</span><span>0.98</span></div>
+                  <div class="w-full bg-black/50 rounded-full h-1.5"><div class="bg-purple-500 h-1.5 rounded-full" style="width: 98%"></div></div>
+                </div>
+              </div>
             </div>
+
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-gray-400">TensorFlow</span>
+              <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-gray-400">OpenCV</span>
+            </div>
+          </div>
+          <div class="mt-auto flex justify-center border-t border-white/10 pt-6">
+            <a href="https://docs.google.com/document/d/1CVAd3oWIpLsBNhHrEqfiTBe0d3T9XB5-/edit?usp=drivesdk&ouid=110367082878703692421&rtpof=true&sd=true" target="_blank" class="px-8 py-2.5 border border-white/20 rounded-full text-[11px] font-bold uppercase tracking-widest text-white hover:bg-white hover:text-black transition-all">
+              {{ store.lang === 'en' ? 'View Tech Doc' : 'Lihat Dokumen' }}
+            </a>
           </div>
         </div>
 
-        <!-- Project 4: Zora AI (Enterprise / WhatsApp Automation) -->
-        <div class="glossy-card p-8 rounded-2xl flex flex-col justify-between">
+        <!-- Project 4: Zora AI -->
+        <div class="glossy-card p-8 rounded-2xl flex flex-col justify-between group hover:-translate-y-1 transition-transform duration-300">
           <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-[10px] font-mono tracking-widest text-gray-400 uppercase">ENTERPRISE / AGENTIC AUTOMATION</span>
-            </div>
+            <span class="text-[10px] font-mono tracking-widest text-gray-400 uppercase mb-4 block">AGENTIC AUTOMATION</span>
             <h3 class="text-xl font-bold text-white mb-3">Zora AI — WhatsApp Sales Agent</h3>
             <p class="text-sm text-gray-400 mb-6 font-light leading-relaxed">
-              Agentic AI system on WhatsApp for property sales automation across 5 active real-estate projects. Multi-agent orchestration grounded in property data.
+              {{ store.lang === 'en' 
+                ? 'Multi-agent AI system on WhatsApp for property sales automation. Architected for context-aware responses grounded in property data.' 
+                : 'Sistem agen AI multi-tasking di WhatsApp untuk otomatisasi penjualan properti, terintegrasi langsung dengan basis data perusahaan.' }}
             </p>
-            <div class="text-xs font-mono text-gray-400 mb-4 space-y-1">
-              <div>Impact: Automating sales for Woodland Group</div>
-              <div>N8N &bull; Chatwoot &bull; Evolution API &bull; Groq &bull; Gemini &bull; Supabase</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 5: Personal Finance Anomaly Detection -->
-        <div class="glossy-card p-8 rounded-2xl flex flex-col justify-between md:col-span-2">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-[10px] font-mono tracking-widest text-gray-400 uppercase">AI BACKEND / ANOMALY DETECTION</span>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-3">Personal Finance Anomaly Detection System</h3>
-            <p class="text-sm text-gray-400 mb-6 font-light leading-relaxed">
-              Suspicious transaction detection system from PDF/CSV/Excel financial statements using hybrid Isolation Forest + personal baseline filtering, accompanied by Gemini API LLM explanations.
-            </p>
-            <div class="text-xs font-mono text-gray-400 space-y-1">
-              <div>Metrics: Precision 0.81 | Recall 0.78 | F1 0.79</div>
-              <div>scikit-learn &bull; FastAPI &bull; pdfplumber &bull; Gemini API &bull; Docker &bull; Railway</div>
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-gray-400">N8N</span>
+              <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-gray-400">Gemini</span>
+              <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-gray-400">Supabase</span>
             </div>
           </div>
         </div>
